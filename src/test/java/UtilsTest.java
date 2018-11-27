@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,12 @@ class UtilsTest {
         name2 = "";
         expected = "";
     }
+    @Test
+    void ckeckNotNull(){
+        assertNotNull(utils.computeFactorial(Integer.valueOf(4)),"Значение нуль");
+    }
 
+    @Ignore
     @Test
     void computeFactorial() {
         int actual = utils.computeFactorial(4);

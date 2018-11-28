@@ -3,6 +3,9 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+
+import static java.lang.Thread.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UtilsTest {
@@ -49,14 +52,15 @@ class UtilsTest {
     }
     @Test
     void ckeckNotNull(){
-        assertNotNull(utils.computeFactorial(Integer.valueOf(4)),"Значение нуль");
+        assertNotNull(utils.computeFactorial(4),"Значение null");
     }
 
-    @Ignore
     @Test
     void computeFactorial() {
-        int actual = utils.computeFactorial(4);
-        int expexted = 24;
-        assertEquals(expexted,actual);
+        assertTimeout(Duration.ofMinutes(1), () -> {
+            int actual = utils.computeFactorial(4);
+            int expexted = 24;
+            assertEquals(expexted, actual);
+        });
     }
 }
